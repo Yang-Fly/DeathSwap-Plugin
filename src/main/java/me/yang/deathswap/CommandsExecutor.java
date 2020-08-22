@@ -47,7 +47,7 @@ public class CommandsExecutor implements TabExecutor{
             return true;
         } else if (sender.hasPermission("deathswap.admin") && args.length == 1){
             if (args[0].equals("start")) {
-                new StartTask(plugin, sender).runTaskAsynchronously(plugin);
+                new StartTask(plugin).runTaskAsynchronously(plugin);
                 return true;
             }
             if (args[0].equals("reset")) {
