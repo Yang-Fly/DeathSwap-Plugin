@@ -35,6 +35,6 @@ public class JoinTeamTask extends BukkitRunnable {
         }
         Team team = sm.getMainScoreboard().getTeam(teamName);
         Objects.requireNonNull(team).addEntry(playerName);
-        sender.sendMessage("Let " + color + playerName + ChatColor.RESET + "Joined Team " + color + team);
+        sender.sendMessage("Let " + color + playerName + ChatColor.RESET + "Joined Team " + color + teamName);
     }
 }
