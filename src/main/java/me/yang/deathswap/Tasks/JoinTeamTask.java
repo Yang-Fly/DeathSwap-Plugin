@@ -1,38 +1,40 @@
 package me.yang.deathswap.Tasks;
 
-import me.yang.deathswap.DeathSwap;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scoreboard.ScoreboardManager;
+import org.bukkit.scoreboard.Team;
+
+import java.util.Objects;
 
 public class JoinTeamTask extends BukkitRunnable {
     private final CommandSender sender;
-    private String team;
-    private String playerName;
+    private final String playerName;
+    private final ScoreboardManager sm = Bukkit.getScoreboardManager();
 
-    public JoinTeamTask(CommandSender sender, String team, String playerName) {
+    private String teamName;
+
+    public JoinTeamTask(CommandSender sender, String teamName, String playerName) {
         this.sender = sender;
-        this.team = team;
+        this.teamName = teamName;
         this.playerName = playerName;
-    }
-
-    public JoinTeamTask(CommandSender sender, String team) {
-        this.sender = sender;
-        this.team = team;
     }
 
     @Override
     public void run() {
-        final ChatColor color;
-        if (team.equals("blue")) {
+        ChatColor color;
+
+        if (teamName.equals("blue")) {
             color = ChatColor.AQUA;
-            team = "Blue";
+            teamName = "Blue";
         } else {
             color = ChatColor.GREEN;
-            team = "Green";
+            teamName = "Green";
         }
-        sender.sendMessage("Joined Team " + color + team);
-
-        //TODO: Join Team
+        Team team = sm.getMainScoreboard().getTeam(teamName);
+        Objects.requireNonNull(team).addEntry(playerName);
+        sender.sendMessage("Let " + color + playerName + ChatColor.RESET + "Joined Team " + color + team);
     }
 }

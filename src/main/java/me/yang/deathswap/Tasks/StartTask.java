@@ -15,10 +15,8 @@ import java.util.Set;
 
 public class StartTask extends BukkitRunnable {
     private final DeathSwap plugin;
-    private final CommandSender sender;
-    public StartTask(DeathSwap plugin, CommandSender sender) {
+    public StartTask(DeathSwap plugin) {
         this.plugin = plugin;
-        this.sender = sender;
     }
 
     @Override

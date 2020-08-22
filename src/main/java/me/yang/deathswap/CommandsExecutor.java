@@ -55,7 +55,7 @@ public class CommandsExecutor implements TabExecutor{
                 return true;
             }
             if (args[0].equals("blue") || args[0].equals("green")) {
-                new JoinTeamTask(sender, args[0]).runTaskAsynchronously(plugin);
+                new JoinTeamTask(sender, args[0], sender.getName()).runTaskAsynchronously(plugin);
                 return true;
             }
             sender.sendMessage("Unknown command. Type \"/deathswap help\" for help.");
@@ -65,7 +65,7 @@ public class CommandsExecutor implements TabExecutor{
             return true;
         } else if (sender.hasPermission("deathswap.player") && args.length == 1) {
             if (args[0].equals("blue") || args[0].equals("green")) {
-                new JoinTeamTask(sender, args[0]).runTaskAsynchronously(plugin);
+                new JoinTeamTask(sender, args[0], sender.getName()).runTaskAsynchronously(plugin);
                 return true;
             }
             sender.sendMessage("Unknown command. Type \"/deathswap help\" for help.");
