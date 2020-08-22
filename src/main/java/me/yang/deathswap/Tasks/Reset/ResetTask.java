@@ -45,6 +45,11 @@ public class ResetTask extends BukkitRunnable {
                 tags.remove("player");
             }
         }
+
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            player.setExp(0);
+            player.setLevel(0);
+        }
         Objects.requireNonNull(Bukkit.getWorld("Test-World-In-1162")).setTime(3000);
         Objects.requireNonNull(Bukkit.getWorld("Test-World-In-1162")).setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
         Objects.requireNonNull(Bukkit.getWorld("Test-World-In-1162")).setGameRule(GameRule.DO_MOB_SPAWNING, false);
