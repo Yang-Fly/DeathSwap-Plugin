@@ -18,7 +18,7 @@ public final class DeathSwap extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("deathswap")).setExecutor(executor);
         Objects.requireNonNull(this.getCommand("deathswap")).setTabCompleter(executor);
         new Loop(this).runTaskTimerAsynchronously(this, 0, 1);
-        getServer().getPluginManager().registerEvents(new EntitySpawnListener(this), this);
+        getServer().getPluginManager().registerEvents(new EntitySpawnListener(), this);
     }
 
     @Override

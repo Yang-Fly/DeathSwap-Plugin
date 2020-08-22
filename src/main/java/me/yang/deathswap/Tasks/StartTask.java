@@ -98,7 +98,7 @@ public class StartTask extends BukkitRunnable {
                 bluePlayer.setGameMode(GameMode.SURVIVAL);
                 greenPlayer.setGameMode(GameMode.SURVIVAL);
 
-                new Timer(plugin, sender).runTask(plugin);
+                new Timer().runTask(plugin);
 
                 Bukkit.broadcastMessage("Init Game Completed");
 

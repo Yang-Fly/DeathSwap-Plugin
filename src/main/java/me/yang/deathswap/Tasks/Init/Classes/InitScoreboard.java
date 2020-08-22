@@ -1,6 +1,5 @@
 package me.yang.deathswap.Tasks.Init.Classes;
 
-import me.yang.deathswap.DeathSwap;
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.*;
@@ -8,11 +7,6 @@ import org.bukkit.scoreboard.*;
 import java.util.Objects;
 
 public class InitScoreboard extends BukkitRunnable {
-    private final DeathSwap plugin;
-    public InitScoreboard(DeathSwap plugin) {
-        this.plugin = plugin;
-    }
-
     @Override
     public void run() {
         ScoreboardManager sm = Bukkit.getScoreboardManager();

@@ -4,8 +4,8 @@ import me.yang.deathswap.DeathSwap;
 import me.yang.deathswap.Tasks.Init.Classes.InitBossBar;
 import me.yang.deathswap.Tasks.Init.Classes.InitScoreboard;
 import me.yang.deathswap.Tasks.Init.Classes.InitTeam;
-
 import me.yang.deathswap.Tasks.Reset.ResetTask;
+
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -23,9 +23,9 @@ public class InitTask extends BukkitRunnable {
 
     @Override
     public void run() {
-        new InitScoreboard(plugin).runTask(plugin);
-        new InitTeam(plugin).runTask(plugin);
-        new InitBossBar(plugin).runTask(plugin);
+        new InitScoreboard().runTask(plugin);
+        new InitTeam().runTask(plugin);
+        new InitBossBar().runTask(plugin);
         Title title = new Title(ChatColor.AQUA + "Changing Title Times", ChatColor.GREEN + "Wait for a second", 20, 100, 20);
         for (Player player : Bukkit.getOnlinePlayers()) {
             Player name = player.getPlayer();

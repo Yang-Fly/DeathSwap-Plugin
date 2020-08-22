@@ -1,6 +1,5 @@
 package me.yang.deathswap.Tasks.Init.Classes;
 
-import me.yang.deathswap.DeathSwap;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
@@ -14,11 +13,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.Objects;
 
 public class InitBossBar extends BukkitRunnable {
-    private final DeathSwap plugin;
-    public InitBossBar(DeathSwap plugin) {
-        this.plugin = plugin;
-    }
-
     @Override
     public void run() {
         Bukkit.createBossBar(NamespacedKey.minecraft("green"), ChatColor.GREEN + "" + ChatColor.BOLD + "Green Player", BarColor.GREEN, BarStyle.SOLID);

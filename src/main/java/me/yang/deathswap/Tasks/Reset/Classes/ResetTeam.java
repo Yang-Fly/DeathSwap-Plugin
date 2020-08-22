@@ -1,23 +1,16 @@
 package me.yang.deathswap.Tasks.Reset.Classes;
 
-import me.yang.deathswap.DeathSwap;
-import me.yang.deathswap.Tasks.Init.Classes.InitTeam;
-import me.yang.deathswap.Tasks.Uninit.Classes.UninitTeam;
+import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scoreboard.ScoreboardManager;
+
+import java.util.Objects;
 
 public class ResetTeam extends BukkitRunnable {
-    private final DeathSwap plugin;
-
-    public ResetTeam(DeathSwap plugin) {
-        this.plugin = plugin;
-    }
-
     @Override
     public void run() {
-        //ScoreboardManager sm = Bukkit.getScoreboardManager();
-        //Set<String> green = Objects.requireNonNull(sm.getMainScoreboard().getTeam("Green")).getEntries();
-        //Set<String> blue = Objects.requireNonNull(sm.getMainScoreboard().getTeam("Blue")).getEntries();
-        new UninitTeam().run();
-        new InitTeam(plugin).runTask(plugin);
+        ScoreboardManager sm = Bukkit.getScoreboardManager();
+        Objects.requireNonNull(sm.getMainScoreboard().getTeam("Green")).getEntries().clear();
+        Objects.requireNonNull(sm.getMainScoreboard().getTeam("Blue")).getEntries().clear();
     }
 }

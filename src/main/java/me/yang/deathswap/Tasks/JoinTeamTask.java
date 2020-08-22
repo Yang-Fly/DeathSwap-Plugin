@@ -6,20 +6,17 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class JoinTeamTask extends BukkitRunnable {
-    private final DeathSwap plugin;
     private final CommandSender sender;
     private String team;
     private String playerName;
 
-    public JoinTeamTask(DeathSwap plugin, CommandSender sender, String team, String playerName) {
-        this.plugin = plugin;
+    public JoinTeamTask(CommandSender sender, String team, String playerName) {
         this.sender = sender;
         this.team = team;
         this.playerName = playerName;
     }
 
-    public JoinTeamTask(DeathSwap plugin, CommandSender sender, String team) {
-        this.plugin = plugin;
+    public JoinTeamTask(CommandSender sender, String team) {
         this.sender = sender;
         this.team = team;
     }

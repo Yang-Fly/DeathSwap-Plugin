@@ -1,22 +1,12 @@
 package me.yang.deathswap.Tasks;
 
-import me.yang.deathswap.DeathSwap;
 import org.bukkit.Bukkit;
-import org.bukkit.command.CommandSender;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.ScoreboardManager;
 
 import java.util.Objects;
 
 public class Timer extends BukkitRunnable {
-    private final DeathSwap plugin;
-    private final CommandSender sender;
-
-    public Timer(DeathSwap plugin, CommandSender sender) {
-        this.plugin = plugin;
-        this.sender = sender;
-    }
-
     @Override
     public void run() {
         ScoreboardManager sm = Bukkit.getScoreboardManager();

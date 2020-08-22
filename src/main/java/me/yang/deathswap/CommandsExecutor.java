@@ -55,17 +55,17 @@ public class CommandsExecutor implements TabExecutor{
                 return true;
             }
             if (args[0].equals("blue") || args[0].equals("green")) {
-                new JoinTeamTask(plugin, sender, args[0]).runTaskAsynchronously(plugin);
+                new JoinTeamTask(sender, args[0]).runTaskAsynchronously(plugin);
                 return true;
             }
             sender.sendMessage("Unknown command. Type \"/deathswap help\" for help.");
             return true;
         } else if ((args[0].equals("blue") || args[0].equals("green")) && args.length == 2) {
-            new JoinTeamTask(plugin, sender, args[0], args[1]).runTaskAsynchronously(plugin);
+            new JoinTeamTask(sender, args[0], args[1]).runTaskAsynchronously(plugin);
             return true;
         } else if (sender.hasPermission("deathswap.player") && args.length == 1) {
             if (args[0].equals("blue") || args[0].equals("green")) {
-                new JoinTeamTask(plugin, sender, args[0]).runTaskAsynchronously(plugin);
+                new JoinTeamTask(sender, args[0]).runTaskAsynchronously(plugin);
                 return true;
             }
             sender.sendMessage("Unknown command. Type \"/deathswap help\" for help.");
