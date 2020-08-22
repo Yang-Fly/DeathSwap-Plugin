@@ -1,0 +1,31 @@
+name: DeathSwap
+version: ${project.version}
+main: me.yang.deathswap.DeathSwap
+api-version: "1.16"
+authors: [ Xray_Yang ]
+description: DeathSwap Plugin Version
+commands:
+  deathswap:
+    description: DeathSwap Plugin Version
+    usage: |
+      /deathswap - Show this help text.
+      /deathswap help - Show this help text.
+      /deathswap blue - Join the Blue Team.
+      /deathswap green - Join the Green Team.
+      /deathswap start - Start the game.
+      /deathswap reset - Reset the settings.
+permissions:
+  deathswap.admin:
+    description: DeathSwap Admin Commands.
+    default: op
+    children:
+      deathswap.player: true
+  deathswap.player:
+    description: DeathSwap Player Commands.
+    default: true
+  deathswap.*:
+    description: Gives access to all DeathSwap commands.
+    children:
+      deathswap.player: true
+      deathswap.admin: true
+    default: op
