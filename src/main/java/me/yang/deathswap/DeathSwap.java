@@ -24,7 +24,6 @@ public final class DeathSwap extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
-        new Loop(this).cancel();
         new UninitTask().run();
         HandlerList.unregisterAll(this);
     }
