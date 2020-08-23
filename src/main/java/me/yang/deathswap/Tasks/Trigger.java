@@ -22,6 +22,7 @@ public class Trigger extends BukkitRunnable {
         //TODO: Trigger
         ScoreboardManager sm = Bukkit.getScoreboardManager();
         Objective settings = Objects.requireNonNull(sm.getMainScoreboard().getObjective("settings"));
+        
         for (Player player : Bukkit.getOnlinePlayers()) {
             String name = player.getName();
             int triggers = Objects.requireNonNull(sm.getMainScoreboard().getObjective("triggers")).getScore(name).getScore();

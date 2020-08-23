@@ -83,7 +83,7 @@ public class StartTask extends BukkitRunnable {
                 bluePlayer.playSound(bluePlayer.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
                 greenPlayer.playSound(greenPlayer.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
 
-                Objects.requireNonNull(Bukkit.getPlayer("Xray_Yang")).performCommand("spreadplayers ~ ~ 2000 100000 false @a[tag=player]");
+                //Objects.requireNonNull(Bukkit.getPlayer("Xray_Yang")).performCommand("spreadplayers ~ ~ 2000 100000 false @a[tag=player]");
 
                 bluePlayer.getInventory().clear();
                 greenPlayer.getInventory().clear();

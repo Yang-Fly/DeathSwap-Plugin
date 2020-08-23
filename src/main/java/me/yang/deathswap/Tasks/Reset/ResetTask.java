@@ -50,11 +50,13 @@ public class ResetTask extends BukkitRunnable {
             player.setExp(0);
             player.setLevel(0);
         }
+
         Objects.requireNonNull(Bukkit.getWorld("Test-World-In-1162")).setTime(3000);
         Objects.requireNonNull(Bukkit.getWorld("Test-World-In-1162")).setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
         Objects.requireNonNull(Bukkit.getWorld("Test-World-In-1162")).setGameRule(GameRule.DO_MOB_SPAWNING, false);
         Objects.requireNonNull(Bukkit.getWorld("Test-World-In-1162")).setGameRule(GameRule.NATURAL_REGENERATION, true);
         Objects.requireNonNull(Bukkit.getWorld("Test-World-In-1162")).setGameRule(GameRule.KEEP_INVENTORY, true);
+        Objects.requireNonNull(Bukkit.getWorld("Test-World-In-1162")).setGameRule(GameRule.COMMAND_BLOCK_OUTPUT, false);
         Bukkit.broadcastMessage(ChatColor.AQUA + "" + ChatColor.BOLD + "Reset Complete!");
     }
 }

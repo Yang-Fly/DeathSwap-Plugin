@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public class ResetTeam extends BukkitRunnable {
     @Override
-    public void run() {
+    public void run() throws UnsupportedOperationException{
         ScoreboardManager sm = Bukkit.getScoreboardManager();
         Objects.requireNonNull(sm.getMainScoreboard().getTeam("Green")).getEntries().clear();
         Objects.requireNonNull(sm.getMainScoreboard().getTeam("Blue")).getEntries().clear();
