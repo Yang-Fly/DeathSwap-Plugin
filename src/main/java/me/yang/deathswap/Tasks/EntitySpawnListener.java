@@ -10,7 +10,7 @@ public class EntitySpawnListener implements Listener {
     @EventHandler
     public void onEntitySpawn(EntitySpawnEvent event) {
         EntityType et = event.getEntityType();
-        if (et.equals(EntityType.valueOf("minecraft.written_book"))) {
+        if (et.equals(EntityType.DROPPED_ITEM)) {
             event.getEntity().remove();
         } else if (et.equals(EntityType.ARMOR_STAND)) {
             Entity entity = event.getEntity();

@@ -19,7 +19,6 @@ public class Trigger extends BukkitRunnable {
 
     @Override
     public void run() {
-        //TODO: Trigger
         ScoreboardManager sm = Bukkit.getScoreboardManager();
         Objective settings = Objects.requireNonNull(sm.getMainScoreboard().getObjective("settings"));
         
@@ -101,6 +100,7 @@ public class Trigger extends BukkitRunnable {
                     Bukkit.broadcastMessage(ChatColor.BLUE + name + " enabled 10 second swap warning");
                     break;
             }
+            Objects.requireNonNull(sm.getMainScoreboard().getObjective("triggers")).getScore(name).setScore(0);
         }
     }
 }

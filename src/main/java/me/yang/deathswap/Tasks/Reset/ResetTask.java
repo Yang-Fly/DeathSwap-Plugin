@@ -20,9 +20,9 @@ public class ResetTask extends BukkitRunnable {
 
     @Override
     public void run() {
-        new ResetScoreboard().runTaskAsynchronously(plugin);
-        new ResetTeam().runTaskAsynchronously(plugin);
-        new ResetBossBar().runTaskAsynchronously(plugin);
+        new ResetScoreboard().runTask(plugin);
+        new ResetTeam().runTask(plugin);
+        new ResetBossBar().runTask(plugin);
 
         for (Player player : Bukkit.getOnlinePlayers()) {
             Player name = player.getPlayer();

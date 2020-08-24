@@ -26,7 +26,7 @@ public class JoinTeamTask extends BukkitRunnable {
     @Override
     public void run() {
         ChatColor color;
-
+    
         if (teamName.equals("blue")) {
             color = ChatColor.AQUA;
             teamName = "Blue";
@@ -36,42 +36,46 @@ public class JoinTeamTask extends BukkitRunnable {
             teamName = "Green";
             otherTeamName = "Blue";
         }
-        
+    
         Team team = sm.getMainScoreboard().getTeam(teamName);
         Team otherTeam = sm.getMainScoreboard().getTeam(otherTeamName);
-        
-        if (teamName.equals("Blue")) {
-            if (Objects.requireNonNull(team).getEntries().contains(playerName) && sender.getName().equals(playerName)) {
-                sender.sendMessage("You are already joined in the team.");
-            } else if (team.getEntries().contains(playerName) && !sender.getName().equals(playerName)) {
-                sender.sendMessage("He is already joined in that team.");
-            } else if (Objects.requireNonNull(otherTeam).getEntries().contains(playerName) && sender.getName().equals(playerName)) {
-                sender.sendMessage("You are already joined another team.");
-            } else if (otherTeam.getEntries().contains(playerName) && !sender.getName().equals(playerName)) {
-                sender.sendMessage("He is already joined another team.");
-            } else if (!team.getEntries().contains(playerName) && !otherTeam.getEntries().contains(playerName) && sender.getName().equals(playerName)){
-                Objects.requireNonNull(team).addEntry(playerName);
-                sender.sendMessage("Joined Team " + color + teamName);
-            } else if (!team.getEntries().contains(playerName) && !otherTeam.getEntries().contains(playerName) && !sender.getName().equals(playerName)) {
-                Objects.requireNonNull(team).addEntry(playerName);
-                sender.sendMessage("Let " + color + playerName + ChatColor.RESET + "Joined Team " + color + teamName);
+    
+        if (sender.getName().equals("CONSOLE")) {
+            Bukkit.getLogger().warning("You must be a player!");
+        } else {
+            if (teamName.equals("Blue")) {
+                if (Objects.requireNonNull(team).getEntries().contains(playerName) && sender.getName().equals(playerName)) {
+                    sender.sendMessage("You are already joined in the team.");
+                } else if (team.getEntries().contains(playerName) && ! sender.getName().equals(playerName)) {
+                    sender.sendMessage("He is already joined in that team.");
+                } else if (Objects.requireNonNull(otherTeam).getEntries().contains(playerName) && sender.getName().equals(playerName)) {
+                    sender.sendMessage("You are already joined another team.");
+                } else if (otherTeam.getEntries().contains(playerName) && ! sender.getName().equals(playerName)) {
+                    sender.sendMessage("He is already joined another team.");
+                } else if (! team.getEntries().contains(playerName) && ! otherTeam.getEntries().contains(playerName) && sender.getName().equals(playerName)) {
+                    Objects.requireNonNull(team).addEntry(playerName);
+                    sender.sendMessage("Joined Team " + color + teamName);
+                } else if (! team.getEntries().contains(playerName) && ! otherTeam.getEntries().contains(playerName) && ! sender.getName().equals(playerName)) {
+                    Objects.requireNonNull(team).addEntry(playerName);
+                    sender.sendMessage("Let " + color + playerName + ChatColor.RESET + "Joined Team " + color + teamName);
+                }
             }
-        }
-        if (teamName.equals("Green")) {
-            if (Objects.requireNonNull(team).getEntries().contains(playerName) && sender.getName().equals(playerName)) {
-                sender.sendMessage("You are already joined in the team.");
-            } else if (team.getEntries().contains(playerName) && !sender.getName().equals(playerName)) {
-                sender.sendMessage("He is already joined in that team.");
-            } else if (Objects.requireNonNull(otherTeam).getEntries().contains(playerName) && sender.getName().equals(playerName)) {
-                sender.sendMessage("You are already joined another team.");
-            } else if (otherTeam.getEntries().contains(playerName) && !sender.getName().equals(playerName)) {
-                sender.sendMessage("He is already joined another team.");
-            } else if (!team.getEntries().contains(playerName) && !otherTeam.getEntries().contains(playerName) && sender.getName().equals(playerName)){
-                Objects.requireNonNull(team).addEntry(playerName);
-                sender.sendMessage("Joined Team " + color + teamName);
-            } else if (!team.getEntries().contains(playerName) && !otherTeam.getEntries().contains(playerName) && !sender.getName().equals(playerName)) {
-                Objects.requireNonNull(team).addEntry(playerName);
-                sender.sendMessage("Let " + color + playerName + ChatColor.RESET + "Joined Team " + color + teamName);
+            if (teamName.equals("Green")) {
+                if (Objects.requireNonNull(team).getEntries().contains(playerName) && sender.getName().equals(playerName)) {
+                    sender.sendMessage("You are already joined in the team.");
+                } else if (team.getEntries().contains(playerName) && ! sender.getName().equals(playerName)) {
+                    sender.sendMessage("He is already joined in that team.");
+                } else if (Objects.requireNonNull(otherTeam).getEntries().contains(playerName) && sender.getName().equals(playerName)) {
+                    sender.sendMessage("You are already joined another team.");
+                } else if (otherTeam.getEntries().contains(playerName) && ! sender.getName().equals(playerName)) {
+                    sender.sendMessage("He is already joined another team.");
+                } else if (! team.getEntries().contains(playerName) && ! otherTeam.getEntries().contains(playerName) && sender.getName().equals(playerName)) {
+                    Objects.requireNonNull(team).addEntry(playerName);
+                    sender.sendMessage("Joined Team " + color + teamName);
+                } else if (! team.getEntries().contains(playerName) && ! otherTeam.getEntries().contains(playerName) && ! sender.getName().equals(playerName)) {
+                    Objects.requireNonNull(team).addEntry(playerName);
+                    sender.sendMessage("Let " + color + playerName + ChatColor.RESET + "Joined Team " + color + teamName);
+                }
             }
         }
     }
