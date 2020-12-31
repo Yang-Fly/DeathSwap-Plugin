@@ -76,6 +76,7 @@ public class InitTask extends BukkitRunnable {
         Objects.requireNonNull(Bukkit.getWorld("Test-World-In-1162")).setGameRule(GameRule.NATURAL_REGENERATION, true);
         Objects.requireNonNull(Bukkit.getWorld("Test-World-In-1162")).setGameRule(GameRule.KEEP_INVENTORY, true);
         Objects.requireNonNull(Bukkit.getWorld("Test-World-In-1162")).setGameRule(GameRule.COMMAND_BLOCK_OUTPUT, false);
+        Objects.requireNonNull(Bukkit.getWorld("Test-World-In-1162")).setGameRule(GameRule.LOG_ADMIN_COMMANDS, false);
         Bukkit.broadcastMessage(ChatColor.AQUA + "" + ChatColor.BOLD + "Reset Complete!");
         
         Bukkit.broadcastMessage(ChatColor.AQUA + "" + ChatColor.BOLD + "DeathSwap Plugin Ready!");

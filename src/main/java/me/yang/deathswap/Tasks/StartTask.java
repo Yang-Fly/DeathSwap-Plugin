@@ -4,7 +4,6 @@ import com.destroystokyo.paper.Title;
 import me.yang.deathswap.DeathSwap;
 import org.bukkit.*;
 import org.bukkit.boss.BossBar;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.ScoreboardManager;
@@ -82,9 +81,7 @@ public class StartTask extends BukkitRunnable {
                 Objects.requireNonNull(sm.getMainScoreboard().getObjective("game_state")).getScore("game_state").setScore(1);
                 bluePlayer.playSound(bluePlayer.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
                 greenPlayer.playSound(greenPlayer.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
-
-                //Objects.requireNonNull(Bukkit.getPlayer("Xray_Yang")).performCommand("spreadplayers ~ ~ 2000 100000 false @a[tag=player]");
-                //Objects.requireNonNull(Bukkit.getPlayer("CONSOLE")).performCommand("spreadplayers ~ ~ 2000 100000 false @a[tag=player]");
+                
                 Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "spreadplayers ~ ~ 2000 100000 false @a[tag=player]");
                 
                 bluePlayer.getInventory().clear();

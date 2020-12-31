@@ -31,5 +31,6 @@ public class InitScoreboard extends BukkitRunnable {
         Objects.requireNonNull(sm.getMainScoreboard().getObjective("settings")).getScore("saturation").setScore(0);
         Objects.requireNonNull(sm.getMainScoreboard().getObjective("settings")).getScore("spawn").setScore(0);
         Objects.requireNonNull(sm.getMainScoreboard().getObjective("settings")).getScore("warn").setScore(0);
+        Objects.requireNonNull(sm.getMainScoreboard().getObjective("game_state")).getScore("game_state").setScore(0);
     }
 }
