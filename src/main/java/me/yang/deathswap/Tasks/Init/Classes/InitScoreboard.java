@@ -2,7 +2,8 @@ package me.yang.deathswap.Tasks.Init.Classes;
 
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scoreboard.*;
+import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.scoreboard.ScoreboardManager;
 
 import java.util.Objects;
 
@@ -11,6 +12,7 @@ public class InitScoreboard extends BukkitRunnable {
     public void run() {
         ScoreboardManager sm = Bukkit.getScoreboardManager();
         //Init Scoreboard Objectives
+        sm.getMainScoreboard().registerNewObjective("DeathSwap", "dummy", "DeathSwap");
         sm.getMainScoreboard().registerNewObjective("deaths", "deathCount", "deaths");
         sm.getMainScoreboard().registerNewObjective("timer", "dummy", "timer");
         sm.getMainScoreboard().registerNewObjective("game_state", "dummy", "game_state");
@@ -19,6 +21,7 @@ public class InitScoreboard extends BukkitRunnable {
         sm.getMainScoreboard().registerNewObjective("playerCount", "dummy", "playerCount");
         sm.getMainScoreboard().registerNewObjective("triggers", "trigger", "triggers");
         //Init Scoreboard Players
+        Objects.requireNonNull(sm.getMainScoreboard().getObjective("DeathSwap")).getScore("ON").setScore(1);
         Objects.requireNonNull(sm.getMainScoreboard().getObjective("timer")).getScore("timer").setScore(0);
         Objects.requireNonNull(sm.getMainScoreboard().getObjective("timer")).getScore("spread").setScore(10);
         Objects.requireNonNull(sm.getMainScoreboard().getObjective("timer")).getScore("start").setScore(600);

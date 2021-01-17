@@ -13,7 +13,6 @@ commands:
       /deathswap blue - Join the Blue Team.
       /deathswap green - Join the Green Team.
       /deathswap start - Start the game.
-      /deathswap reset - Reset the settings.
 permissions:
   deathswap.admin:
     description: DeathSwap Admin Commands.

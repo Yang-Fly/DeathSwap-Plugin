@@ -1,12 +1,17 @@
 package me.yang.deathswap.Tasks.Reset;
 
 import me.yang.deathswap.DeathSwap;
+import me.yang.deathswap.Tasks.ChangeGameruleTask;
 import me.yang.deathswap.Tasks.Reset.Classes.ResetBossBar;
 import me.yang.deathswap.Tasks.Reset.Classes.ResetScoreboard;
 import me.yang.deathswap.Tasks.Reset.Classes.ResetTeam;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
+import org.bukkit.OfflinePlayer;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scoreboard.ScoreboardManager;
 
 import java.util.Objects;
 import java.util.Set;
@@ -20,23 +25,14 @@ public class ResetTask extends BukkitRunnable {
 
     @Override
     public void run() {
+        ScoreboardManager sm = Bukkit.getScoreboardManager();
+        Player bluePlayer = Bukkit.getPlayer(Objects.requireNonNull(sm.getMainScoreboard().getTeam("Green")).getEntries().toString());
+        assert bluePlayer != null;
+        World world = bluePlayer.getWorld();
+
         new ResetScoreboard().runTask(plugin);
         new ResetTeam().runTask(plugin);
         new ResetBossBar().runTask(plugin);
-
-        for (Player player : Bukkit.getOnlinePlayers()) {
-            Player name = player.getPlayer();
-            if (name != null) {
-                name.getInventory().clear();
-            }
-        }
-
-        for (Player player : Bukkit.getOnlinePlayers()) {
-            Player name = player.getPlayer();
-            if (name != null) {
-                name.setGameMode(GameMode.SURVIVAL);
-            }
-        }
 
         for (OfflinePlayer player : Bukkit.getOfflinePlayers()) {
             Player name = player.getPlayer();
@@ -47,17 +43,12 @@ public class ResetTask extends BukkitRunnable {
         }
 
         for (Player player : Bukkit.getOnlinePlayers()) {
+            player.getInventory().clear();
+            player.setGameMode(GameMode.SURVIVAL);
             player.setExp(0);
             player.setLevel(0);
         }
 
-        Objects.requireNonNull(Bukkit.getWorld("Test-World-In-1162")).setTime(3000);
-        Objects.requireNonNull(Bukkit.getWorld("Test-World-In-1162")).setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
-        Objects.requireNonNull(Bukkit.getWorld("Test-World-In-1162")).setGameRule(GameRule.DO_MOB_SPAWNING, false);
-        Objects.requireNonNull(Bukkit.getWorld("Test-World-In-1162")).setGameRule(GameRule.NATURAL_REGENERATION, true);
-        Objects.requireNonNull(Bukkit.getWorld("Test-World-In-1162")).setGameRule(GameRule.KEEP_INVENTORY, true);
-        Objects.requireNonNull(Bukkit.getWorld("Test-World-In-1162")).setGameRule(GameRule.COMMAND_BLOCK_OUTPUT, false);
-        Objects.requireNonNull(Bukkit.getWorld("Test-World-In-1162")).setGameRule(GameRule.LOG_ADMIN_COMMANDS, false);
-        Bukkit.broadcastMessage(ChatColor.AQUA + "" + ChatColor.BOLD + "Reset Complete!");
+        ChangeGameruleTask.gameruleSet(world);
     }
 }

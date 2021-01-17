@@ -19,8 +19,8 @@ public class InitBossBar extends BukkitRunnable {
         Bukkit.createBossBar(NamespacedKey.minecraft("blue"), ChatColor.AQUA + "" + ChatColor.BOLD + "Blue Player", BarColor.BLUE, BarStyle.SOLID);
         BossBar green = Bukkit.getBossBar(NamespacedKey.minecraft("green"));
         BossBar blue = Bukkit.getBossBar(NamespacedKey.minecraft("blue"));
-        Objects.requireNonNull(green).setVisible(true);
-        Objects.requireNonNull(blue).setVisible(true);
+        Objects.requireNonNull(green).setVisible(false);
+        Objects.requireNonNull(blue).setVisible(false);
         for (OfflinePlayer player : Bukkit.getOfflinePlayers()) {
             Player name = player.getPlayer();
             if (name != null) {

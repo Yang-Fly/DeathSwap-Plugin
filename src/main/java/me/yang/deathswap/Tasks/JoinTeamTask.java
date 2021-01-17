@@ -2,23 +2,19 @@ package me.yang.deathswap.Tasks;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.scoreboard.Team;
 
-import java.util.Objects;
+import java.util.Set;
 
 public class JoinTeamTask extends BukkitRunnable {
-    private final CommandSender sender;
     private final String playerName;
     private final ScoreboardManager sm = Bukkit.getScoreboardManager();
-
     private String teamName;
-    private String otherTeamName;
 
-    public JoinTeamTask(CommandSender sender, String teamName, String playerName) {
-        this.sender = sender;
+    public JoinTeamTask(String teamName, String playerName) {
         this.teamName = teamName;
         this.playerName = playerName;
     }
@@ -26,7 +22,8 @@ public class JoinTeamTask extends BukkitRunnable {
     @Override
     public void run() {
         ChatColor color;
-    
+        String otherTeamName;
+
         if (teamName.equals("blue")) {
             color = ChatColor.AQUA;
             teamName = "Blue";
@@ -36,45 +33,47 @@ public class JoinTeamTask extends BukkitRunnable {
             teamName = "Green";
             otherTeamName = "Blue";
         }
-    
+
         Team team = sm.getMainScoreboard().getTeam(teamName);
         Team otherTeam = sm.getMainScoreboard().getTeam(otherTeamName);
-    
-        if (sender.getName().equals("CONSOLE")) {
+        assert otherTeam != null;
+        assert team != null;
+
+        if (playerName.equals("CONSOLE")) {
             Bukkit.getLogger().warning("You must be a player!");
         } else {
             if (teamName.equals("Blue")) {
-                if (Objects.requireNonNull(team).getEntries().contains(playerName) && sender.getName().equals(playerName)) {
-                    sender.sendMessage("You are already joined in the team.");
-                } else if (team.getEntries().contains(playerName) && ! sender.getName().equals(playerName)) {
-                    sender.sendMessage("He is already joined in that team.");
-                } else if (Objects.requireNonNull(otherTeam).getEntries().contains(playerName) && sender.getName().equals(playerName)) {
-                    sender.sendMessage("You are already joined another team.");
-                } else if (otherTeam.getEntries().contains(playerName) && ! sender.getName().equals(playerName)) {
-                    sender.sendMessage("He is already joined another team.");
-                } else if (! team.getEntries().contains(playerName) && ! otherTeam.getEntries().contains(playerName) && sender.getName().equals(playerName)) {
-                    Objects.requireNonNull(team).addEntry(playerName);
-                    sender.sendMessage("Joined Team " + color + teamName);
-                } else if (! team.getEntries().contains(playerName) && ! otherTeam.getEntries().contains(playerName) && ! sender.getName().equals(playerName)) {
-                    Objects.requireNonNull(team).addEntry(playerName);
-                    sender.sendMessage("Let " + color + playerName + ChatColor.RESET + "Joined Team " + color + teamName);
-                }
+                joinATeam(color, team, otherTeam);
             }
             if (teamName.equals("Green")) {
-                if (Objects.requireNonNull(team).getEntries().contains(playerName) && sender.getName().equals(playerName)) {
-                    sender.sendMessage("You are already joined in the team.");
-                } else if (team.getEntries().contains(playerName) && ! sender.getName().equals(playerName)) {
-                    sender.sendMessage("He is already joined in that team.");
-                } else if (Objects.requireNonNull(otherTeam).getEntries().contains(playerName) && sender.getName().equals(playerName)) {
-                    sender.sendMessage("You are already joined another team.");
-                } else if (otherTeam.getEntries().contains(playerName) && ! sender.getName().equals(playerName)) {
-                    sender.sendMessage("He is already joined another team.");
-                } else if (! team.getEntries().contains(playerName) && ! otherTeam.getEntries().contains(playerName) && sender.getName().equals(playerName)) {
-                    Objects.requireNonNull(team).addEntry(playerName);
-                    sender.sendMessage("Joined Team " + color + teamName);
-                } else if (! team.getEntries().contains(playerName) && ! otherTeam.getEntries().contains(playerName) && ! sender.getName().equals(playerName)) {
-                    Objects.requireNonNull(team).addEntry(playerName);
-                    sender.sendMessage("Let " + color + playerName + ChatColor.RESET + "Joined Team " + color + teamName);
+                joinATeam(color, team, otherTeam);
+            }
+        }
+    }
+
+    private void joinATeam(ChatColor color, Team team, Team otherTeam) {
+        Set<String> teamMember = team.getEntries();
+        Set<String> otherTeamMember = otherTeam.getEntries();
+        Player player = Bukkit.getPlayer(playerName);
+        assert player != null;
+        int teamNum = teamMember.size();
+        /*
+            situations:
+            1.teamMember.contain(playerName)           "You are already joined in the team."
+            2.!teamMember.contain(playerName) && otherTeamMember.contain(playerName)           "You are already in another team."
+            3.!teamMember.contain(playerName) && !otherTeamMember.contain(playerName) && teamNum = 1           "There is already another player in that team."
+            4.!teamMember.contain(playerName) && !otherTeamMember.contain(playerName) && teamNum != 1          playerName + " joined " + color + teamName
+         */
+        if (teamMember.contains(playerName)) {
+            player.sendMessage("You are already joined in the team.");
+        } else {
+            if (otherTeamMember.contains(playerName)) {
+                player.sendMessage("You are already in another team.");
+            } else {
+                if (teamNum == 1) {
+                    player.sendMessage("There is already another player in that team.");
+                } else {
+                    Bukkit.broadcastMessage(playerName + " joined " + color + teamName);
                 }
             }
         }

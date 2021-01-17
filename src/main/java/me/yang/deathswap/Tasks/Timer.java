@@ -30,6 +30,6 @@ public class Timer extends BukkitRunnable {
         timer = Objects.requireNonNull(sm.getMainScoreboard().getObjective("timer")).getScore("timer").getScore();
         int start = Objects.requireNonNull(sm.getMainScoreboard().getObjective("timer")).getScore("start").getScore();
         Objects.requireNonNull(sm.getMainScoreboard().getObjective("timer")).getScore("timer").setScore(timer + start);
-        Bukkit.broadcastMessage("Timer Init Completed");
+        Bukkit.broadcastMessage("Timer Reset Completed");
     }
 }

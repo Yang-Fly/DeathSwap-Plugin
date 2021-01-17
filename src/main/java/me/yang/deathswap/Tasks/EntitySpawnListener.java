@@ -10,14 +10,10 @@ public class EntitySpawnListener implements Listener {
     @EventHandler
     public void onEntitySpawn(EntitySpawnEvent event) {
         EntityType et = event.getEntityType();
+        Entity entity = event.getEntity();
+
         if (et.equals(EntityType.DROPPED_ITEM)) {
-            event.getEntity().remove();
-        } else if (et.equals(EntityType.ARMOR_STAND)) {
-            Entity entity = event.getEntity();
-            entity.setCustomName("tp");
-            entity.setCustomNameVisible(false);
-            entity.setGravity(false);
-            entity.setInvulnerable(true);
+            entity.remove();
         }
     }
 }
