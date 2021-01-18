@@ -28,4 +28,4 @@ jobs:
        # Artifact name
         name: DeathSwap.jar
         # Destination path
-        path: DeathSwap-*.jar
+        path: target/DeathSwap-*.jar
