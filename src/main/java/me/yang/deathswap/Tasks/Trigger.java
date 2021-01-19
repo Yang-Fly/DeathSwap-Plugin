@@ -26,11 +26,11 @@ public class Trigger extends BukkitRunnable {
             int triggers = Objects.requireNonNull(player.getScoreboard().getObjective("triggers")).getScore(name).getScore();
             switch (triggers) {
                 case 1:
-                    new JoinTeamTask("blue", name);
+                    new JoinTeamTask("blue", name).run();
                     Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "scoreboard players enable @a triggers");
                     break;
                 case 2:
-                    new JoinTeamTask("green", name);
+                    new JoinTeamTask("green", name).run();
                     Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "scoreboard players enable @a triggers");
                     break;
                 case 3:
