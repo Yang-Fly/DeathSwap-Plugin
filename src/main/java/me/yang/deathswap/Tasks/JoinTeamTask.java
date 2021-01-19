@@ -54,6 +54,7 @@ public class JoinTeamTask extends BukkitRunnable {
     private void joinATeam(ChatColor color, Team team, Team otherTeam) {
         Set<String> teamMember = team.getEntries();
         Set<String> otherTeamMember = otherTeam.getEntries();
+
         Player player = Bukkit.getPlayer(playerName);
         assert player != null;
         int teamNum = teamMember.size();
@@ -73,6 +74,7 @@ public class JoinTeamTask extends BukkitRunnable {
                 if (teamNum == 1) {
                     player.sendMessage("There is already another player in that team.");
                 } else {
+                    team.addEntry(playerName);
                     Bukkit.broadcastMessage(playerName + " joined " + color + teamName);
                 }
             }
