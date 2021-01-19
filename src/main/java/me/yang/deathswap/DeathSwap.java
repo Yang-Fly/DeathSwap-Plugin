@@ -3,7 +3,6 @@ package me.yang.deathswap;
 import me.yang.deathswap.Tasks.EntitySpawnListener;
 import me.yang.deathswap.Tasks.Init.InitTask;
 import me.yang.deathswap.Tasks.Loop;
-import me.yang.deathswap.Tasks.PlayerJoinListener;
 import me.yang.deathswap.Tasks.Uninit.UninitTask;
 import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;
@@ -26,11 +25,8 @@ public final class DeathSwap extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("deathswap")).setTabCompleter(executor);
         new Loop(this).runTaskTimer(this, 40, 1);
         getServer().getPluginManager().registerEvents(new EntitySpawnListener(), this);
-        if (Bukkit.getOnlinePlayers().size() >= 1) {
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "scoreboard players enable @a triggers");
-        } else {
-            getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
-        }
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "scoreboard players enable @a triggers");
+        getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
     }
 
     @Override
