@@ -26,7 +26,11 @@ public final class DeathSwap extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("deathswap")).setTabCompleter(executor);
         new Loop(this).runTaskTimer(this, 40, 1);
         getServer().getPluginManager().registerEvents(new EntitySpawnListener(), this);
-        getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
+        if (Bukkit.getOnlinePlayers().size() >= 1) {
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "scoreboard players enable @a triggers");
+        } else {
+            getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
+        }
     }
 
     @Override
