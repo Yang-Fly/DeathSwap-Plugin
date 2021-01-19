@@ -75,7 +75,7 @@ public class JoinTeamTask extends BukkitRunnable {
                     player.sendMessage("There is already another player in that team.");
                 } else {
                     team.addEntry(playerName);
-                    Bukkit.broadcastMessage(playerName + " joined " + color + teamName);
+                    Bukkit.broadcastMessage(ChatColor.BLUE + playerName + " joined " + color + teamName);
                 }
             }
         }
